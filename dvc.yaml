@@ -7,3 +7,15 @@ stages:
     outs:
       - artifacts/train.csv
       - artifacts/test.csv
+
+  validation:
+    cmd: python src/components/data_validation.py
+    deps:
+      - src/components/data_validation.py
+      - artifacts/train.csv
+      - artifacts/test.csv
+      - config/schema.yaml
+    outs:
+      - artifacts/validated_train.csv
+      - artifacts/validated_test.csv
+      - artifacts/validation_report.json
