@@ -1,2 +1,4 @@
+[core]
+    remote = origin
 ['remote "origin"']
-    url = https://dagshub.com/vishnushankar1/Customer-Churn-Prediction-with-mlops.s3
+    url = https://dagshub.com/vishnushankar1/Customer-Churn-Prediction-with-mlops.dvc
