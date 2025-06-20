@@ -22,3 +22,8 @@ class DataTransformationArtifact:
     y_train_path: str
     X_test_path: str
     y_test_path: str
+
+@dataclass
+class ModelTrainerArtifact:
+    model_path: str
+    metrics_path: str

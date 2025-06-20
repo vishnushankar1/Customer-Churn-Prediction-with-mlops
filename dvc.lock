@@ -112,3 +112,35 @@ stages:
       hash: md5
       md5: 1b0354780ad738aa0f46f33cc67fa724
       size: 42320
+  model_training:
+    cmd: python src/components/model_training.py
+    deps:
+    - path: artifacts/transformation/X_test.npy
+      hash: md5
+      md5: 98c31f2011406601a39f09f67afc5ce2
+      size: 422048
+    - path: artifacts/transformation/X_train.npy
+      hash: md5
+      md5: e761739416ee0c73938d982bba81fa9c
+      size: 1265888
+    - path: artifacts/transformation/y_test.npy
+      hash: md5
+      md5: 46908281da52bd7d65926c94ccc3d990
+      size: 14192
+    - path: artifacts/transformation/y_train.npy
+      hash: md5
+      md5: 1b0354780ad738aa0f46f33cc67fa724
+      size: 42320
+    - path: src/components/model_training.py
+      hash: md5
+      md5: 0662d4c0b6024946ca65d2ea8a8c21cb
+      size: 5095
+    outs:
+    - path: artifacts/model_training/metrics.json
+      hash: md5
+      md5: 265ab04576419a4900541d6ea1cb51f4
+      size: 184
+    - path: artifacts/model_training/model.h5
+      hash: md5
+      md5: a6784518f7f4608067eae8f76149c5c0
+      size: 81232

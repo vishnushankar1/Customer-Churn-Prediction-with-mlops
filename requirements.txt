@@ -7,11 +7,14 @@ plotly
 seaborn
 scikit-learn
 imblearn
+keras
+tensorflow
 
 # Experiment Tracking & MLOps
 mlflow
 dvc
-
+dagshub
+python-dotenv
 # Model Serialization & Utilities
 joblib
 dill
