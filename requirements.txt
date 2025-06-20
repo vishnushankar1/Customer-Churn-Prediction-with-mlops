@@ -32,6 +32,7 @@ fastapi
 uvicorn
 python-multipart
 jinja2
+pydantic 
 
 # MongoDB (optional – if you plan to use it for model metadata)
 pymongo
