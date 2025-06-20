@@ -18,7 +18,7 @@ class DataIngestion:
                  raw_data_path="data/data.csv",
                  train_path="artifacts/train.csv",
                  test_path="artifacts/test.csv",
-                 test_size=0.2):
+                 test_size=0.25):
         self.raw_data_path = raw_data_path
         self.train_path = train_path
         self.test_path = test_path

@@ -29,14 +29,14 @@ stages:
       size: 977501
     - path: src/components/data_ingestion.py
       hash: md5
-      md5: a18c871b984a138d5c7acf0515bcc3fb
-      size: 2149
+      md5: cafe6668be8291b14415a8fc917ab1f9
+      size: 2150
     outs:
     - path: artifacts/test.csv
       hash: md5
-      md5: 98ffe9aa2352b3c7268183de3c911b0d
-      size: 196438
+      md5: 36ad7f0578d32107fc7e032a0588bd94
+      size: 244639
     - path: artifacts/train.csv
       hash: md5
-      md5: 8896b5323df206424d9961bd44fed032
-      size: 782108
+      md5: 15fb439d21ce80fe0a7ff286ab409a49
+      size: 733907
