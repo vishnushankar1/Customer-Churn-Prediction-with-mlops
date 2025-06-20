@@ -1,0 +1,9 @@
+stages:
+  ingestion:
+    cmd: python src/components/data_ingestion.py
+    deps:
+      - src/components/data_ingestion.py
+      - data/data.csv
+    outs:
+      - artifacts/train.csv
+      - artifacts/test.csv

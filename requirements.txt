@@ -33,3 +33,4 @@ jinja2
 # MongoDB (optional – if you plan to use it for model metadata)
 pymongo
 
+-e .
