@@ -14,3 +14,11 @@ class DataValidationArtifact:
     validation_report_file_path: str
     validated_train_path: str
     validated_test_path: str
+
+@dataclass
+class DataTransformationArtifact:
+    preprocessor_object_path: str
+    X_train_path: str
+    y_train_path: str
+    X_test_path: str
+    y_test_path: str

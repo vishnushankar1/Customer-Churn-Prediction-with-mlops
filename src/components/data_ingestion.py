@@ -16,8 +16,8 @@ sys.path.append(os.getcwd())
 class DataIngestion:
     def __init__(self,
                  raw_data_path="data/data.csv",
-                 train_path="artifacts/train.csv",
-                 test_path="artifacts/test.csv",
+                 train_path="artifacts/data_ingestion/train.csv",
+                 test_path="artifacts/data_ingestion/test.csv",
                  test_size=0.25):
         self.raw_data_path = raw_data_path
         self.train_path = train_path

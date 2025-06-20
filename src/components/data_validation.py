@@ -15,12 +15,16 @@ class DataValidation:
         try:
             self.data_ingestion_artifact = data_ingestion_artifact
 
-            # ✅ Directly provide schema file path here
             schema_path = os.path.join("config", "schema.yaml")
             self._schema_config = read_yaml_file(file_path=schema_path)
 
-            # ✅ Define path to save validation report (no config_entity needed)
-            self.validation_report_path = os.path.join("artifacts", "validation_report.json")
+            # ✅ Updated paths to use data_validation folder
+            self.data_validation_dir = os.path.join("artifacts", "data_validation")
+            os.makedirs(self.data_validation_dir, exist_ok=True)
+
+            self.validated_train_path = os.path.join(self.data_validation_dir, "validated_train.csv")
+            self.validated_test_path = os.path.join(self.data_validation_dir, "validated_test.csv")
+            self.validation_report_path = os.path.join(self.data_validation_dir, "validation_report.json")
 
         except Exception as e:
             raise CustomException(e, sys)
@@ -71,7 +75,6 @@ class DataValidation:
             train_df = self.read_data(self.data_ingestion_artifact.train_file_path)
             test_df = self.read_data(self.data_ingestion_artifact.test_file_path)
 
-            # 💡 Clean data
             for df, name in [(train_df, "train"), (test_df, "test")]:
                 if "customerID" in df.columns:
                     df.drop("customerID", axis=1, inplace=True)
@@ -82,14 +85,10 @@ class DataValidation:
                 df.dropna(inplace=True)
                 logging.info(f"Dropped {before - len(df)} NaN rows from {name} data.")
 
-            # ✅ Save cleaned CSVs
-            validated_train_path = os.path.join("artifacts", "validated_train.csv")
-            validated_test_path = os.path.join("artifacts", "validated_test.csv")
+            # ✅ Save validated CSVs
+            train_df.to_csv(self.validated_train_path, index=False)
+            test_df.to_csv(self.validated_test_path, index=False)
 
-            train_df.to_csv(validated_train_path, index=False)
-            test_df.to_csv(validated_test_path, index=False)
-
-            # ✅ Column checks
             if not self.validate_number_of_columns(train_df):
                 validation_error_msg += "Column count mismatch in train data. "
             if not self.validate_number_of_columns(test_df):
@@ -101,9 +100,6 @@ class DataValidation:
                 validation_error_msg += "Missing required columns in test data. "
 
             validation_status = len(validation_error_msg) == 0
-
-            # ✅ Save validation report
-            os.makedirs(os.path.dirname(self.validation_report_path), exist_ok=True)
 
             validation_report = {
                 "validation_status": validation_status,
@@ -118,7 +114,9 @@ class DataValidation:
             return DataValidationArtifact(
                 validation_status=validation_status,
                 message=validation_error_msg.strip(),
-                validation_report_file_path=self.validation_report_path
+                validation_report_file_path=self.validation_report_path,
+                validated_train_path=self.validated_train_path,
+                validated_test_path=self.validated_test_path
             )
 
         except Exception as e:

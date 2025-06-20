@@ -43,3 +43,4 @@ categorical_columns:
   - PaperlessBilling
   - PaymentMethod
   - Churn
+target_column: Churn
