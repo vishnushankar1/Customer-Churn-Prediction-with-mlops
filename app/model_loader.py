@@ -1,5 +1,3 @@
-# app/model_loader.py
-
 import os
 import pickle
 import numpy as np
@@ -15,6 +13,7 @@ model_path = os.path.join("artifacts", "model_training", "model.h5")
 model = load_model(model_path)
 
 def make_prediction(data: np.ndarray) -> str:
-    data_scaled = scaler.transform([data])
+    data = np.array(data).reshape(1, -1)  # ✅ Fix: ensure input is 2D
+    data_scaled = scaler.transform(data)  # ✅ Now scaler will not throw error
     pred = model.predict(data_scaled)[0][0]
     return "Churn: Yes" if pred > 0.5 else "Churn: No"

@@ -12,31 +12,49 @@
       padding: 30px;
       border-radius: 10px;
     }
+
     h1 {
       text-align: center;
       color: #222;
     }
+
     form {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 15px;
     }
+
     label {
       font-weight: bold;
     }
+
     input[type="number"], select {
       width: 100%;
       padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
+
     .submit-row {
       grid-column: span 2;
       text-align: center;
       margin-top: 20px;
     }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
     .result {
       text-align: center;
       font-size: 20px;
@@ -46,10 +64,11 @@
   </style>
 </head>
 <body>
+
   <h1>📊 Telco Customer Churn Prediction</h1>
 
   <form action="/predict" method="post">
-    <!-- Numerical Inputs -->
+
     <label>Senior Citizen:</label>
     <select name="SeniorCitizen" required>
       <option value="0">No</option>
@@ -65,170 +84,117 @@
     <label>Total Charges:</label>
     <input name="TotalCharges" type="number" step="any" required>
 
-    <!-- Binary Dropdowns -->
     <label>Gender:</label>
-    <select name="gender_Male" required>
-      <option value="1">Male</option>
-      <option value="0">Female</option>
+    <select name="gender" required>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
     </select>
 
     <label>Partner:</label>
-    <select name="Partner_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <select name="partner" required>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
     </select>
 
     <label>Dependents:</label>
-    <select name="Dependents_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <select name="dependents" required>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
     </select>
 
     <label>Phone Service:</label>
-    <select name="PhoneService_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <select name="phone_service" required>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
     </select>
 
-    <label>Multiple Lines - No Phone Service:</label>
-    <select name="MultipleLines_No_phone_service" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <label>Multiple Lines:</label>
+    <select name="multiple_lines" required>
+      <option value="No">No</option>
+      <option value="Yes">Yes</option>
+      <option value="No phone service">No phone service</option>
     </select>
 
-    <label>Multiple Lines - Yes:</label>
-    <select name="MultipleLines_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <label>Internet Service:</label>
+    <select name="internet_service" required>
+      <option value="DSL">DSL</option>
+      <option value="Fiber optic">Fiber optic</option>
+      <option value="No">No</option>
     </select>
 
-    <label>Internet Service - Fiber Optic:</label>
-    <select name="InternetService_Fiber_optic" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <label>Online Security:</label>
+    <select name="online_security" required>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="No internet service">No internet service</option>
     </select>
 
-    <label>Internet Service - No:</label>
-    <select name="InternetService_No" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <label>Online Backup:</label>
+    <select name="online_backup" required>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="No internet service">No internet service</option>
     </select>
 
-    <label>Online Security - No Internet:</label>
-    <select name="OnlineSecurity_No_internet_service" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <label>Device Protection:</label>
+    <select name="device_protection" required>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="No internet service">No internet service</option>
     </select>
 
-    <label>Online Security - Yes:</label>
-    <select name="OnlineSecurity_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <label>Tech Support:</label>
+    <select name="tech_support" required>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="No internet service">No internet service</option>
     </select>
 
-    <label>Online Backup - No Internet:</label>
-    <select name="OnlineBackup_No_internet_service" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <label>Streaming TV:</label>
+    <select name="streaming_tv" required>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="No internet service">No internet service</option>
     </select>
 
-    <label>Online Backup - Yes:</label>
-    <select name="OnlineBackup_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <label>Streaming Movies:</label>
+    <select name="streaming_movies" required>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="No internet service">No internet service</option>
     </select>
 
-    <label>Device Protection - No Internet:</label>
-    <select name="DeviceProtection_No_internet_service" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
-    </select>
-
-    <label>Device Protection - Yes:</label>
-    <select name="DeviceProtection_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
-    </select>
-
-    <label>Tech Support - No Internet:</label>
-    <select name="TechSupport_No_internet_service" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
-    </select>
-
-    <label>Tech Support - Yes:</label>
-    <select name="TechSupport_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
-    </select>
-
-    <label>Streaming TV - No Internet:</label>
-    <select name="StreamingTV_No_internet_service" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
-    </select>
-
-    <label>Streaming TV - Yes:</label>
-    <select name="StreamingTV_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
-    </select>
-
-    <label>Streaming Movies - No Internet:</label>
-    <select name="StreamingMovies_No_internet_service" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
-    </select>
-
-    <label>Streaming Movies - Yes:</label>
-    <select name="StreamingMovies_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
-    </select>
-
-    <label>Contract - One Year:</label>
-    <select name="Contract_One_year" required>
-      <option value="1">One Year</option>
-      <option value="0">Other</option>
-    </select>
-
-    <label>Contract - Two Year:</label>
-    <select name="Contract_Two_year" required>
-      <option value="1">Two Year</option>
-      <option value="0">Other</option>
+    <label>Contract:</label>
+    <select name="contract" required>
+      <option value="Month-to-month">Month-to-month</option>
+      <option value="One year">One year</option>
+      <option value="Two year">Two year</option>
     </select>
 
     <label>Paperless Billing:</label>
-    <select name="PaperlessBilling_Yes" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <select name="paperless_billing" required>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
     </select>
 
-    <label>Payment Method - Credit Card (Auto):</label>
-    <select name="PaymentMethod_Credit_card_automatic" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
-    </select>
-
-    <label>Payment Method - Electronic Check:</label>
-    <select name="PaymentMethod_Electronic_check" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
-    </select>
-
-    <label>Payment Method - Mailed Check:</label>
-    <select name="PaymentMethod_Mailed_check" required>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <label>Payment Method:</label>
+    <select name="payment_method" required>
+      <option value="Credit card (automatic)">Credit card (automatic)</option>
+      <option value="Electronic check">Electronic check</option>
+      <option value="Mailed check">Mailed check</option>
+      <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
     </select>
 
     <div class="submit-row">
-      <button type="submit">🚀 Predict </button>
+      <button type="submit">🚀 Predict</button>
     </div>
   </form>
 
   {% if result %}
-    <div class="result">Prediction: <strong>{{ result }}</strong></div>
+    <div class="result">
+      Prediction: <strong>{{ result }}</strong>
+    </div>
   {% endif %}
+
 </body>
 </html>

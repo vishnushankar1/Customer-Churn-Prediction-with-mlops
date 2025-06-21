@@ -33,7 +33,7 @@ stages:
     - artifacts/transformation/y_train.npy
     - artifacts/transformation/X_test.npy
     - artifacts/transformation/y_test.npy
-    - artifacts/transformation/scaler.pkl
+    
 
   model_training:
     cmd: python src/components/model_training.py
@@ -43,7 +43,6 @@ stages:
       - artifacts/transformation/y_train.npy
       - artifacts/transformation/X_test.npy
       - artifacts/transformation/y_test.npy
-    outs:
-      - artifacts/model_training/model.h5
+    
     metrics:
       - artifacts/model_training/metrics.json
