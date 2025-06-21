@@ -41,3 +41,4 @@ jobs:
             -e MLFLOW_TRACKING_PASSWORD=${{ secrets.DAGSHUB_TOKEN }} \
             ghcr.io/vishnushankar1/churn-fastapi:latest \
             dvc repro
+            
