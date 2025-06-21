@@ -14,8 +14,7 @@ RUN pip install -r requirements.txt
 
 
        
-# Run pipeline to generate artifacts
-RUN dvc repro
+
 
 # Expose FastAPI port
 EXPOSE 8000
