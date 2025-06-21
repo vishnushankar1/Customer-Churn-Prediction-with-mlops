@@ -1,0 +1,29 @@
+name: 🚀 Train Model with DVC inside Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🔐 Login to GHCR
+        run: echo "${{ secrets.GHCR_TOKEN}}" | docker login ghcr.io -u vishnushankar1 --password-stdin
+
+      - name: 🐳 Pull Docker image from GHCR
+        run: docker pull ghcr.io/vishnushankar1/churn-fastapi:latest
+
+      - name: 🏃 Run DVC pipeline in container
+        run: |
+          docker run \
+            -v ${{ github.workspace }}:/app \
+            -w /app \
+            ghcr.io/vishnushankar1/churn-fastapi:latest \
+            dvc repro
